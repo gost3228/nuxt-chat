@@ -1,6 +1,5 @@
-import colors from 'vuetify/es5/util/colors'
-
-export default {
+const colors = require('vuetify/es5/util/colors')
+module.exports = {
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
@@ -32,6 +31,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    {src: '@/plugins/socket', ssr: false}
   ],
   /*
   ** Nuxt.js dev-modules
@@ -55,13 +55,13 @@ export default {
       dark: true,
       themes: {
         dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
+          primary: colors.default.blue.darken2,
+          accent: colors.default.grey.darken3,
+          secondary: colors.default.amber.darken3,
+          info: colors.default.teal.lighten1,
+          warning: colors.default.amber.base,
+          error: colors.default.deepOrange.accent4,
+          success: colors.default.green.accent3
         }
       }
     }
