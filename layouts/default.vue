@@ -1,6 +1,6 @@
 <template>
   <v-app app>
-    <v-navigation-drawer app v-model="drawer">
+    <v-navigation-drawer app mobile-breakpoint="650" v-model="drawer">
       <v-list subheader>
         <v-subheader>Список людей в комнате</v-subheader>
 
@@ -28,7 +28,7 @@
       <v-toolbar-title>Чат комнаты {{ user.room }}</v-toolbar-title>
     </v-app-bar>
     <v-main>
-      <div>
+      <div style="height: 100%;">
         <nuxt />
       </div>
     </v-main>
@@ -51,8 +51,10 @@ export default {
   methods: {
     ...mapMutations(['clearData']),
     exit() {
-      this.$router.push('/?message=leftChat')
-      this.clearData()
+      this.$socket.client.emit('userLeft', this.user, data => {
+        this.$router.push('/?message=leftChat')
+        this.clearData()
+      })
     }
   }
 }
